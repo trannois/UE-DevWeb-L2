@@ -12,36 +12,26 @@
       <hr>
 
       <button class="btn btn-primary" onclick="request()">Requête synchrone</button>
-      <button class="btn btn-primary" onclick="request2()">Requête asynchrone</button>
     </div>
 
     <script>
       function request() {
-        const req = new XMLHttpRequest();
-        req.open('GET', 'http://194.57.110.19/~upjv/scriptRequeteExemple.php', false);
-        req.send(null);
+          const req = new XMLHttpRequest();
 
-        alert("Ok");
+          req.onreadystatechange = function (event) {
+              // XMLHttpRequest.DONE === 4
+              if (this.readyState === XMLHttpRequest.DONE) {
+                  var flag = 1;
+                  if (this.status === 200) {
+                      console.log("Réponse reçu: %s", this.responseText);
+                  } else {
+                      console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+                  }
+              }
+          };
 
-        if (req.status === 200) {
-            console.log("Réponse reçue: %s", req.responseText);
-        } else {
-            console.log("Status de la réponse: %d (%s)", req.status, req.statusText);
-        }
-      }
-
-      function request2() {
-        const req = new XMLHttpRequest();
-        req.open('GET', 'http://194.57.110.19/~upjv/scriptRequeteExemple.php', true);
-        req.send(null);
-
-        alert("Ok");
-
-        if (req.status === 200) {
-            console.log("Réponse reçue: %s", req.responseText);
-        } else {
-            console.log("Status de la réponse: %d (%s)", req.status, req.statusText);
-        }
+          req.open('GET', 'scriptRequeteExemple.php', true);
+          req.send(null);
       }
     </script>
 

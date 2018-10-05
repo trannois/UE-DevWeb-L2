@@ -1,3 +1,2 @@
 <?php
-echo 'Bonjour';
-sleep(3);
+echo mktime();
