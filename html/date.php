@@ -1,2 +1,3 @@
 <?php
-echo mktime();
+session_start();
+echo mktime() - $_SESSION['chrono'];

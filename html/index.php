@@ -7,6 +7,9 @@
         let monInter;
 
         function startChrono() {
+            let req = new XMLHttpRequest();
+            req.open('GET', 'start.php');
+            req.send(null);
             document.getElementById('indicateur').innerText = 'M';
             monInter = setInterval( periodique, 1000);
         }
