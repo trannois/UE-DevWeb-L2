@@ -12,8 +12,7 @@
         }
 
         function periodique() {
-            let eltPerio = document.getElementById("perio");
-            eltPerio.innerText = Date.now();
+            request();
         }
 
         function stopChrono() {
@@ -22,6 +21,18 @@
             document.getElementById("perio").innerText='';
 
         }
+
+        function request() {
+            const req = new XMLHttpRequest();
+            req.onreadystatechange = function (event) {
+                if ((this.readyState === XMLHttpRequest.DONE) && (this.status === 200)) {
+                    document.getElementById("perio").innerText = "Réponse reçu:"+ this.responseText;
+                 }
+            };
+            req.open('GET', 'date.php');
+            req.send(null);
+        }
+
     </script>
 </head>
 <body onload="">
