@@ -6,21 +6,33 @@
     <script>
         let monInter;
 
+        function startChrono() {
+            document.getElementById('indicateur').innerText = 'M';
+            monInter = setInterval( periodique, 1000);
+        }
+
         function periodique() {
             let eltPerio = document.getElementById("perio");
             eltPerio.innerText = Date.now();
         }
+
+        function stopChrono() {
+            clearInterval(monInter);
+            document.getElementById('indicateur').innerText='A';
+            document.getElementById("perio").innerText='';
+
+        }
     </script>
 </head>
-<body onload="monInter = setInterval( periodique, 1000);">
+<body onload="">
 
 <div class="container-fluid">
     <h3>Timer</h3>
     <hr>
 
-    <button onclick="document.getElementById('indicateur').innerText='M';"> Démarrer</button>
+    <button onclick="startChrono();"> Démarrer</button>
     <i id="indicateur"></i>
-    <button onclick="clearInterval(monInter);document.getElementById('indicateur').innerText='A';">Arrêter</button>
+    <button onclick="stopChrono();">Arrêter</button>
     <h2 id="perio"></h2>
 
 </div>
