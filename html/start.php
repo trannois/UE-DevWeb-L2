@@ -1,3 +1,7 @@
 <?php
-session_start();
-$_SESSION['chrono']=mktime();
+if (file_exists("chrono"))
+    exit();
+
+$hdl = fopen("chrono","w");
+fwrite($hdl, mktime());
+fclose($hdl);

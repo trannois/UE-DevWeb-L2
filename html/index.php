@@ -22,7 +22,9 @@
             clearInterval(monInter);
             document.getElementById('indicateur').innerText='A';
             document.getElementById("perio").innerText='';
-
+            let req = new XMLHttpRequest();
+            req.open('GET', 'stop.php');
+            req.send(null);
         }
 
         function request() {
